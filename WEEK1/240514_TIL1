@@ -1,0 +1,121 @@
+# TIL
+
+## 배운 것
+- 앱 - 화면 + 로직
+
+앱을 만들 때 고려해야 할 것 세가지 - 화면, 네트워크, 데이터베이스
+
+- 프로젝트 생성
+
+Product Name : 파일 이름이며 출시된 앱의 이름과 무관
+
+Bundle Identifier : 앱의 주민등록번호와 같으며 변경이 불가
+
+EX) com.naver.webtoon
+
+Organization Identifier : Bundle Identifier에 조합되는 식별자, 웹의 도메인 거꾸로 적는 형태
+EX) com.nickname
+
+Team : 이 앱을 만든 사람을 나타냄(Appstore에 앱 소유자가 표시), none일 경우 시뮬레이터 빌드만 가능 
+
+- 프로젝트 설정
+  
+Supported Destination에 iPhone만 남기고 전체 삭제
+
+Minimum Deployments 17.4 > 16.0 또는 17.0으로 내림
+
+Identity - Display Name : 앱 아이콘 아래 노출되는 이름
+
+Deployment Info : Portrait 세로모드,  Upside Down(180도, 아이패드 사용), Landscape Left/Right 가로모드 (세로모드만 남기고 삭제)
+ 
+- Apple & iOS
+iOS의 폐쇄성 
+
+Xcode로만 구현가능
+
+AppStore 1개만 존재
+
+오토레이아웃 - HIG(Human interface Guidelines) 지침 존재
+
+- 이름 설정에 대한 정리
+
+앱스토어 등록이름, 앱 이름, bundle identifier 전부 별개로 설정 가능
+
+- iPad ? iPhone
+
+iPad와 iPhone 모두 적합한 레이아웃 앱 - 출시 이후 iPhone, iPad용으로 전환 불가
+
+iPhone - iPad에서 실행가능 하나 iPad에서는 iPhone 레이아웃으로 보이며 출시 이후 iPhone & ipad로 전환 가능
+
+iPad - iPad에서만 사용가능하면 iPhone에서는 사용 불가, 추시 이후 iPhone & iPad 전환 가능
+
+정리하면 iPhone, iPad용에서 확장은 가능하나 줄이는 것은 불가능
+
+- AppDelegate, SceneDelegate
+  
+자동으로 만들어져 있는 이유 - 앱 자체의 생명주기이기 때문
+
+전화나 알림이 오면 active -> inactive 전환
+
+백그라운드에 여러 앱이 깔려 있으면 background(시스템이 종료시키는 경우도 있으므로 켰을 때 런치스크린부터 시작되면 종료되었다가 다시 켜지는 것)
+
+앱을 종료시키면 Suspend상태로 들어가며 시스템이 제어하게 된다
+
+- iOS 13 기준 달라진 것
+
+다크모드
+
+iPadOS(iOS12까지 iPadOS 존재하지 않았음)
+swiftUI
+iPadOS가 등장하면서 두 개의 앱이 실행 가능 
+
+AppDelegate는 앱이 켜지고 꺼지는 동작에 대해 관리
+
+SceneDelegate는 앱 하나가 UI적으로 Active/Inactive(UI Life cycle 관리)
+
+- Asset.xcassets
+2x 3x  - 다양한 디바이스 사이즈로 인해 해상도가 달라 다양한 배수로 이미지 존재
+
+배포 시 기기마다 앱의 용량이 다른 이유는 기기에 맞는 이미지만 갖고 가서임
+
+안드로이드는 5배수, iOS는 3배수
+
+- iOS 계층 구조와 UIKit FrameWork
+
+coreOS : 전원, 배터리 등의 핵심 영역(살펴볼 일 없음)
+
+coreService : GPS, Sensor(하드웨어와 관련 깊음)
+
+Media: 음악, 파일, 비디오 등
+
+cocoaTouch: UIKit 등 앱을 제작하기 위한 도구 모음
+
+- UIKit Tip
+
+접두어로 앞의 이름을 나타냄(UI- , CL-)
+
+UILabel, UIIIamgeView등은 UIView를 상속받아 UIView에 정의되어 있는 것들을 가져와서 사용 가능
+
+- ViewController
+
+컨텐트 뷰 컨트롤러(UIViewController, UICollectionViewController, UITableViewController)
+
+컨테이너뷰 컨트롤러(UITabBarController, UINavigationController)
+
+- UINavigationController
+  
+드릴다운 인터페이스, 수직적 화면 관리
+
+rootViewController가 존재해야 함(rootView Controller - childViewController)
+
+NC - VC - VC 로 연결되어 있을경우 네비게이션 컨트롤러는 navigationBar, 나머지에는 navigationItem을 가짐
+
+
+## 생각해 볼 것
+Entry Point가 왜 필요한지 ? 
+
+Entry Point가 없으면 어떻게 되는지 ?
+
+최소버전을 iOS 12.0이상으로 했을 때 오류가 발생하는 이유?
+ 
+## 개선
