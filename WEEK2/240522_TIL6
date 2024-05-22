@@ -1,0 +1,147 @@
+# TIL
+
+## 배운 것
+* Opensource License
+    
+    갤러리 사진, 키보드 등 필요한 기능이 묶인 코드 모음으로 class나 function으로 이루어짐
+    
+    라이브러리 찾는 방법 : `swift + github + 쓸 기능` 으로 검색
+
+    저작권 : 저작권 있음. MIT라이센스 같은 것이 존재 (앱에서 썼다고 명시 필요)
+
+    무료인 이유 : 이력이 되기 때문
+
+    라이브러리 삭제 : 그 이후 사용 불가능해기 때문에 최신 업데이트 주기나 star를 확인해 보아야 함
+    
+    사용방법 : 프로젝트에 오픈소스 프로젝트를 추가해서 사용하는 형태
+
+    설치 방법: cocoapods, carthage, swift Package Manage(swiftPM), manually
+
+    Dependency Manager를 통해 다양한 방법으로 설치 가능 
+    
+    - `cocoapods`(지원하는 곳 많고 빌드 스피드 떨어짐) - 중요도 1
+    - carthage(지원하는 곳 적고 빌드 스피드 빠름)
+    - `swiftPM`(애플이 만듬, 지원하는 곳 많아짐) - 중요도 3
+    - manually(파일로 직접 넣음)
+
+* 라이브러리와 프레임워크의 차이 - 자율성/주도권
+
+    프레임워크: 전체적인 흐름을 자체적으로 가지고 있어 정해진 프레임 안에서 작업
+
+    라이브러리: 원하고자 할 때 필요에 따라 사용, 직접 코드 제어
+
+* Semantic versioning
+
+    버전에 대한 관리 ex: 3(major).8(minor).5(patch)
+
+    patch version: 소소한 이슈사항 ex - 오류
+
+    minor version: 규모 있는 기능 단위
+
+    major version: 전 소프트웨어가 달라진다거나 기존 사용자에 영향 등 큰 기능 변경 시
+
+* target
+ 
+    inherit module from target: 내 프로젝트가 아니면 체크하면 안됨
+
+    라이브러리 설치하면 target이 여러개 생김
+
+* if let, guard let
+    if let : 할당한 상수는 if 구문 코드 블럭 내에서면 사용할 수 있음
+
+    guard let: guard 구문이 작성된 스코프 내에서 사용 가능, 옵셔널을 가지면 else가 실행, ealry exita
+
+
+* class & struct
+  
+   class
+  
+    프로퍼티가 모두 초기화된 상태이면 초기화 구문은 필요 없음
+
+    ``` swift
+    let easy = Monster() 
+    ```    
+
+    프로퍼티가 하나라도 초기화되어있지 않으면 오류가 발생하지만 optional인 경우는 nil을 표현할 수 있기 때문에 오류가 발생하지 않음
+
+    프로퍼티가 타입만 지정되어 있으면 초기화되지 않았기 때문에 초기화 메소드 `init` 이 필요
+
+    UIKit은 클래스 기반으로 상속이 가능
+
+    struct
+
+    상속이 되지 않으며 swiftUI는 struct 기반으로 구성
+
+    초기화 구문을 제공해주기 때문에 초기화 구문을 사용하지 않아도 오류가 나지 않음
+    (Memberwise initializer - 멤버와이즈 초기화 구문)
+
+    상속이 되지 않기 때문에 override는 사용할 수 없음
+
+* 클래스 관련 용어
+  
+  인스턴스 메서드 : 클래스 안 메서드
+
+  인스턴스 프로퍼티 : 클래스 안 프로퍼티
+
+  인스턴스 멤버 : 프로퍼티 + 메서드
+
+ * override (재정의)
+    
+    부모의 기능을 상속받아서 사용, 부모클래스 기능은 실행되지 않음
+
+    부모 클래스의 특성도 함게 사용하고 싶으면 `super` 키워드 사용
+
+    예시로 viewDidLoad는 UIViewController에 정의된 클래스로 우리가 사용할때 override하여 사용하는 것이다. 그렇기 때문에 super.viewDidLoad를 꼭 해주어야 함
+
+* overloading
+    
+    다른 형태를 가진 같은 이름의 함수를 사용할 수 있음
+
+* saving Data
+
+    User Default
+
+    - iOS 디바이스 기기(로컬)에 저장
+    - 앱 삭제 시 관련 데이터가 함께 삭제
+    - 백업/복구 기능 필수
+    - 대체적으로 단일 데이터 값(경량)
+    - 애플에서 제공해주는 key-value 형태 기본 저장소
+
+    DataBase
+    - 유사한 대량 데이터값(중량)
+    - core data(by apple), realm, SQLite
+
+* sandBox
+
+    앱은 내 공간만 사용 가능
+
+    공간은 다른사람도, 나도 볼 수 없음
+
+    앱 실행시마다 공간이 이동해서 고정된 공간을 찾을 수 없지만 조회는 가능함
+
+    공간은 네 가지로 나누어져 있는데 하나가 Document임
+
+    개발자가 가장 잘 사용하게 되는 영역은 Document 
+
+    userDefault는 sandBox안에 저장된다.
+
+
+
+## 생각해 볼 것
+
+### private vs fileprivate
+
+private
+- private 키워드로 지정된 요소는 그 요소가 구현된 소스파일 내부에서만 사용 가능
+- 비공개 접근수준은 가장 한정적인 범위
+- private로 지정한 기능은  같은 소스파일 안에 구현한 다른 타입이나 기능에서도 사용 불가
+
+fileprivate
+- 키워드로 지정된 요소는 그 요소가 구현된 소스파일 내부에서만 사용 가능
+- 소스파일 외부에서 값이 변경되거나 함수를 호출하면 부작용이 생길 수 있는 경우에만 사용 권장
+
+[참고한 블로그](https://seons-dev.tistory.com/entry/Swift-%EA%B8%B0%EC%B4%88%EB%AC%B8%EB%B2%95-%EC%A0%91%EA%B7%BC-%EC%A0%9C%EC%96%B4-open-public-internal-fileprivate-private)
+
+### 변수값에 따라 ui변경
+    didSet, willSet, Observable 반응형에 대해 알아야 함
+
